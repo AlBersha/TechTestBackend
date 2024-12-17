@@ -7,7 +7,6 @@ namespace TechTestBackend.API.Controllers;
 [Route("api/spotify")]
 public class SpotifyController(ISongsService songsService) : ControllerBase
 {
-
     [HttpGet]
     [Route("searchTracks")]
     public async Task<IActionResult> SearchTracks(string name)
@@ -20,7 +19,7 @@ public class SpotifyController(ISongsService songsService) : ControllerBase
     [Route("like")]
     public async Task<IActionResult> Like(string id)
     {
-        await songsService.AddTrackToLickedAsync(id);
+        await songsService.AddTrackToLikedAsync(id);
         return Ok();
     }
     
@@ -28,7 +27,7 @@ public class SpotifyController(ISongsService songsService) : ControllerBase
     [Route("removeLike")]
     public async Task<IActionResult> RemoveLike(string id)
     {
-        await songsService.RemoveTrackFromLickedAsync(id);
+        await songsService.RemoveTrackFromLikedAsync(id);
         return Ok();
     }
     

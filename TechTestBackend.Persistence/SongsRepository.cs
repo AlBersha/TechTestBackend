@@ -12,7 +12,7 @@ public class SongsRepository(SongStorageContext dbContext, ILogger<SongsReposito
         return await dbContext.Songs.Where(s => s.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task AddTrackToLickedAsync(SpotifySongModel song)
+    public async Task AddTrackToLikedAsync(SpotifySongModel song)
     {
         var existingSong = dbContext.Songs.FirstOrDefault(s => s.Id == song.Id);
         if (existingSong != null)
@@ -33,7 +33,7 @@ public class SongsRepository(SongStorageContext dbContext, ILogger<SongsReposito
         }
     }
 
-    public async Task RemoveTrackFromLickedAsync(SpotifySongModel song)
+    public async Task RemoveTrackFromLikedAsync(SpotifySongModel song)
     {
         try
         {

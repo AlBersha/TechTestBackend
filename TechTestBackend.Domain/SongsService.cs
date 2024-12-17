@@ -23,7 +23,7 @@ public class SongsService(ISongsRepository songsRepository, ISpotifyHelper spoti
         return tracks;
     }
 
-    public async Task AddTrackToLickedAsync(string id)
+    public async Task AddTrackToLikedAsync(string id)
     {
         if (string.IsNullOrEmpty(id))
         {
@@ -38,10 +38,10 @@ public class SongsService(ISongsRepository songsRepository, ISpotifyHelper spoti
             throw new SongDoesNotExist(id);
         }
 
-        await songsRepository.AddTrackToLickedAsync(song);
+        await songsRepository.AddTrackToLikedAsync(song);
     }
 
-    public async Task RemoveTrackFromLickedAsync(string id)
+    public async Task RemoveTrackFromLikedAsync(string id)
     {
         if (string.IsNullOrEmpty(id))
         {
@@ -55,7 +55,7 @@ public class SongsService(ISongsRepository songsRepository, ISpotifyHelper spoti
             logger.LogError("Fail to remove track from likes - the song does not exist in the database.");
             throw new SongDoesNotExist(id);
         }
-        await songsRepository.RemoveTrackFromLickedAsync(song);
+        await songsRepository.RemoveTrackFromLikedAsync(song);
     }
 
     public async Task<List<SpotifySongModel>> GetAllLikedTracksAsync()
