@@ -9,7 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Logging.AddDebug();
 
-// Add services to the container.
 builder.Services.AddScoped<ISpotifyHelper, SpotifyHelper>();
 builder.Services.AddScoped<ISongsService, SongsService>();
 builder.Services.AddScoped<ISongsRepository, SongsRepository>();

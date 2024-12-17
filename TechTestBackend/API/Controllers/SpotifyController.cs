@@ -1,8 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using TechTestBackend.Domain;
 using TechTestBackend.Domain.Interfaces;
-using TechTestBackend.Domain.Models;
-using TechTestBackend.Persistence;
 
 namespace TechTestBackend.API.Controllers;
 
