@@ -3,12 +3,7 @@ using TechTestBackend.Domain.Models;
 
 namespace TechTestBackend.Persistence;
 
-public class SongStorageContext : DbContext
+public class SongStorageContext(DbContextOptions<SongStorageContext> options) : DbContext(options)
 {
-    public SongStorageContext(DbContextOptions<SongStorageContext> options)
-        : base(options)
-    {
-    }
-
     public DbSet<SpotifySongModel> Songs { get; set; }
 }

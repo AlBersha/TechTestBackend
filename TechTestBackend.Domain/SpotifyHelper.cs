@@ -30,7 +30,7 @@ public class SpotifyHelper : ISpotifyHelper
         if (string.IsNullOrEmpty(password))
         {
             _logger.LogError("Fail to get tracks - password is empty.");
-            return new List<SpotifySongModel>();
+            return [];
         }
         
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", password);
@@ -39,7 +39,7 @@ public class SpotifyHelper : ISpotifyHelper
         if (!response.IsSuccessStatusCode)
         {
             _logger.LogError($"Fail to get songs with name {name}.");
-            return new List<SpotifySongModel>();
+            return [];
         }
         
         var responseString = await response.Content.ReadAsStringAsync();
