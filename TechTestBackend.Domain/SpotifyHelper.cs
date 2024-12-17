@@ -36,7 +36,11 @@ public class SpotifyHelper : ISpotifyHelper
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", password);
         
         var response = await _httpClient.GetAsync(SpotifyApiUrl + "/search?q=" + name + "&type=track");
-        if (!response.IsSuccessStatusCode) return new List<SpotifySongModel>();
+        if (!response.IsSuccessStatusCode)
+        {
+            _logger.LogError($"Fail to get songs with name {name}.");
+            return new List<SpotifySongModel>();
+        }
         
         var responseString = await response.Content.ReadAsStringAsync();
         dynamic songsObjects = JsonConvert.DeserializeObject(responseString);
@@ -53,22 +57,18 @@ public class SpotifyHelper : ISpotifyHelper
 
         var passwordRequest = await _httpClient.PostAsync(AccountsSpotifyApiUrl + "/token", 
             new FormUrlEncodedContent(new [] { new KeyValuePair<string, string>("grant_type", "client_credentials") }));
-        if (!passwordRequest.IsSuccessStatusCode) return string.Empty;
-        
-        dynamic password = JsonConvert.DeserializeObject(await passwordRequest.Content.ReadAsStringAsync());
+        if (!passwordRequest.IsSuccessStatusCode)
+        {
+            _logger.LogError("Fail to get a token.");
+            return string.Empty;
+        }
+
+        var passwordString = await passwordRequest.Content.ReadAsStringAsync();
+        dynamic password = JsonConvert.DeserializeObject(passwordString);
         return password?.access_token.ToString();
     }
     
-    private string GetAuthorizationString()
-    {
-        var clientId = _configuration["SpotifyApiKeys:ClientID"];
-        var clientSecret = _configuration["SpotifyApiKeys:ClientSecret"];
-        
-        var encoded = Encoding.ASCII.GetBytes($"{clientId}:{clientSecret}");
-        return Convert.ToBase64String(encoded);
-    }
-    
-    public async Task<SpotifySongModel> GetTrackById(string id)
+    public async Task<SpotifySongModel> GetTrackByIdAsync(string id)
     {
         var password = await GetPassword();
         if (string.IsNullOrEmpty(password))
@@ -79,11 +79,25 @@ public class SpotifyHelper : ISpotifyHelper
         
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", password);
 
-        var response = _httpClient.GetAsync(SpotifyApiUrl + "/tracks/" + id + "/").Result;
-        dynamic objects = JsonConvert.DeserializeObject(response.Content.ReadAsStringAsync().Result);
-
+        var response = await _httpClient.GetAsync(SpotifyApiUrl + "/tracks/" + id + "/");
+        if (!response.IsSuccessStatusCode)
+        {
+            _logger.LogError($"Fail to get track with id {id}");
+            return new SpotifySongModel();
+        }
+        
+        dynamic objects = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
         var song = JsonConvert.DeserializeObject<SpotifySongModel>(objects.ToString());
         
         return song;
+    }
+    
+    private string GetAuthorizationString()
+    {
+        var clientId = _configuration["SpotifyApiKeys:ClientID"];
+        var clientSecret = _configuration["SpotifyApiKeys:ClientSecret"];
+        
+        var encoded = Encoding.ASCII.GetBytes($"{clientId}:{clientSecret}");
+        return Convert.ToBase64String(encoded);
     }
 }

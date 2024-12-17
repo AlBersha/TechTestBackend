@@ -31,7 +31,7 @@ public class SongsService(ISongsRepository songsRepository, ISpotifyHelper spoti
             throw new InvalidIdException(id);
         }
 
-        var song = await spotifyHelper.GetTrackById(id);
+        var song = await spotifyHelper.GetTrackByIdAsync(id);
         if (song == null || song.Id == null)
         {
             logger.LogError("Fail to find the track.");
