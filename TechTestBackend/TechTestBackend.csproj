@@ -16,4 +16,9 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="7.1.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\TechTestBackend.Domain\TechTestBackend.Domain.csproj" />
+      <ProjectReference Include="..\TechTestBackend.Persistence\TechTestBackend.Persistence.csproj" />
+    </ItemGroup>
+
 </Project>

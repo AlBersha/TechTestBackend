@@ -1,7 +1,7 @@
 ﻿
-namespace TechTestBackend;
+namespace TechTestBackend.Domain.Models;
 
-public class Soptifysong
+public class SpotifySongModel
 {
     public string Id { get; set; }
     public string Name { get; set; }

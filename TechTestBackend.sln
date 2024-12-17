@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechTestBackend", "TechTestBackend\TechTestBackend.csproj", "{05FD26E5-E1F6-4BB3-A7C5-AA6282D6A79C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechTestBackend.Domain", "TechTestBackend.Domain\TechTestBackend.Domain.csproj", "{E15EE2F6-31D7-43AE-82D5-839D854D6420}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechTestBackend.Persistence", "TechTestBackend.Persistence\TechTestBackend.Persistence.csproj", "{2E49E295-7C43-417F-B448-EC8EEE00CE47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,5 +20,13 @@ Global
 		{F0EB2E67-043E-4118-A464-28F42490EBEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0EB2E67-043E-4118-A464-28F42490EBEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0EB2E67-043E-4118-A464-28F42490EBEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E15EE2F6-31D7-43AE-82D5-839D854D6420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E15EE2F6-31D7-43AE-82D5-839D854D6420}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E15EE2F6-31D7-43AE-82D5-839D854D6420}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E15EE2F6-31D7-43AE-82D5-839D854D6420}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E49E295-7C43-417F-B448-EC8EEE00CE47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E49E295-7C43-417F-B448-EC8EEE00CE47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E49E295-7C43-417F-B448-EC8EEE00CE47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E49E295-7C43-417F-B448-EC8EEE00CE47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
